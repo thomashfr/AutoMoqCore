@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "AutoMoqCore.TestFixture.Samples": {
+      "commandName": "Executable"
+    }
+  }
+}

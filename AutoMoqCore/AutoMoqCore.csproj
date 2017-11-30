@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>AutoMoqCore</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Description>AutoMoq(Darren Cauthon) portado para </Description>
+    <Title>AutoMoqCore</Title>
+    <Authors>Darren Cauthon;Thomas Ribeiro</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommonServiceLocator" Version="2.0.1" />
+    <PackageReference Include="Moq" Version="4.7.145" />
+    <PackageReference Include="Unity" Version="5.3.1" />
+  </ItemGroup>
+  
+  
+
+</Project>
