@@ -12,9 +12,8 @@ namespace AutoMoqCore.Tests
             [Fact]
             public void It_should_default_to_loose()
             {
-                
                 var config = new Config();
-                config.MockBehavior.Should().BeEquivalentTo(MockBehavior.Loose);
+                config.MockBehavior.ShouldBeEquivalentTo(MockBehavior.Loose);
             }
         }
     }

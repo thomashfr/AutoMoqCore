@@ -87,7 +87,7 @@ namespace AutoMoqCore.Tests
 			try {
 
 				var mockedInterface = mocker.Create<IDependency>();
-                mockedInterface.Should().BeEquivalentTo(typeof(IDependency));
+                mockedInterface.ShouldBeEquivalentTo(typeof(IDependency));
 			     
             } catch {
 				errorWasHit = true;
