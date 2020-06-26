@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Builder;
-using BuilderStrategy = Unity.Strategies.BuilderStrategy;
+using Unity.Builder.Strategy;
 
 namespace AutoMoqCore.Unity
 {
@@ -17,7 +17,7 @@ namespace AutoMoqCore.Unity
             this.ioc = ioc;
         }
 
-        public override void PreBuildUp(ref BuilderContext context)
+        public override void PreBuildUp(IBuilderContext context)
         {
             var type = GetTheTypeFromTheBuilderContext(context);
             if (AMockObjectShouldBeCreatedForThisType(type))
@@ -28,7 +28,6 @@ namespace AutoMoqCore.Unity
 
             LoadAnyAbstractDependenciesOf(type);
         }
-        
 
         private void LoadAnyAbstractDependenciesOf(Type type)
         {
@@ -82,9 +81,9 @@ namespace AutoMoqCore.Unity
             return type.Name != "Func`1";
         }
 
-        private static Type GetTheTypeFromTheBuilderContext(BuilderContext context)
+        private static Type GetTheTypeFromTheBuilderContext(IBuilderContext context)
         {
-            return (context.Type);
+            return (context.OriginalBuildKey).Type;
         }
 
         private bool ThisTypeIsNotRegistered(Type type)
