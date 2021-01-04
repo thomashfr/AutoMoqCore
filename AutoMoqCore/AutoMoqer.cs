@@ -111,6 +111,22 @@ namespace AutoMoqCore
         }
 
         /// <summary>
+        ///     Verifies for all mocks all expectations regardless of whether they have been flagged as verifiable.
+        /// </summary>
+        public void VerifyAll()
+        {
+            mocking.VerifyAll();
+        }
+
+        /// <summary>
+        ///     Verifies for all mocks all verifiable expectations have been met.
+        /// </summary>
+        public void Verify()
+        {
+            mocking.Verify();
+        }
+
+        /// <summary>
         ///     Call Verify on the Mock.
         /// </summary>
         /// <typeparam name="T">The type of T to verify some sort of expression.</typeparam>
