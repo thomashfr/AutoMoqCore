@@ -18,6 +18,8 @@ namespace AutoMoqCore
         void SetInstance<T>(T instance) where T : class;
         Mock<T> GetMockByCreatingAMockIfOneHasNotAlreadyBeenCreated<T>() where T : class;
         Mock<T> GetMockByCreatingAMockIfOneHasNotAlreadyBeenCreated<T>(MockBehavior mockBehavior) where T : class;
+        void VerifyAll();
+        void Verify();
     }
 
     public class MockingWithMoq : IMocking
@@ -141,6 +143,16 @@ namespace AutoMoqCore
         private bool GetMockHasNotBeenCalledForThisType(Type type)
         {
             return AMockHasNotBeenRegisteredFor(type);
+        }
+
+        public void VerifyAll()
+        {
+            _mockRepository.VerifyAll();
+        }
+
+        public void Verify()
+        {
+            _mockRepository.Verify();
         }
     }
 }

@@ -95,10 +95,75 @@ namespace AutoMoqCore.Tests
 
 			errorWasHit.Should().BeTrue();
 		}
+
+        [Fact]
+        public void Can_verifyall()
+        {
+            var mocked = mocker.Create<ClassWithMultipleDependencies>();
+            mocker.GetMock<IDependency>().Setup(m => m.Something());
+            mocker.GetMock<IOtherDependency>().Setup(m => m.SomethingElse());
+            mocked.ConditionallyUseDepedencies(true, true);
+            mocker.VerifyAll();
+        }
+
+        [Fact]
+        public void Can_verifyall_not_called()
+        {
+            var mocked = mocker.Create<ClassWithMultipleDependencies>();
+            mocker.GetMock<IDependency>().Setup(m => m.Something());
+            mocker.GetMock<IOtherDependency>().Setup(m => m.SomethingElse());
+            mocked.ConditionallyUseDepedencies(true, false);
+            Assert.Throws<MockException>(() => mocker.VerifyAll());
+        }
+
+        [Fact]
+        public void Can_verify_all()
+        {
+            var mocked = mocker.Create<ClassWithMultipleDependencies>();
+            mocker.GetMock<IDependency>().Setup(m => m.Something()).Verifiable();
+            mocker.GetMock<IOtherDependency>().Setup(m => m.SomethingElse()).Verifiable();
+            mocked.ConditionallyUseDepedencies(true, true);
+            mocker.Verify();
+        }
+
+        [Fact]
+        public void Can_verify_all_not_called()
+        {
+            var mocked = mocker.Create<ClassWithMultipleDependencies>();
+            mocker.GetMock<IDependency>().Setup(m => m.Something()).Verifiable();
+            mocker.GetMock<IOtherDependency>().Setup(m => m.SomethingElse()).Verifiable();
+            mocked.ConditionallyUseDepedencies(false, true);
+            Assert.Throws<MockException>(() => mocker.Verify());
+        }
     }
 
     public class ConcreteClass
     {
+    }
+    //default behaviour is strict ? if they do not all come from the factory !
+    // perhaps instead GetAllMocks - could then call verify on them
+    public class ClassWithMultipleDependencies
+    {
+        private readonly IDependency dependency;
+        private readonly IOtherDependency otherDependency;
+
+        public ClassWithMultipleDependencies(IDependency dependency, IOtherDependency otherDependency)
+        {
+            this.dependency = dependency;
+            this.otherDependency = otherDependency;
+        }
+
+        public void ConditionallyUseDepedencies(bool useDependency, bool useOtherDependency)
+        {
+            if (useDependency)
+            {
+                dependency.Something();
+            }
+            if (useOtherDependency)
+            {
+                otherDependency.SomethingElse();
+            }
+        }
     }
 
     public class ClassWithDependencies
@@ -131,6 +196,11 @@ namespace AutoMoqCore.Tests
     public interface IDependency
     {
         void Something();
+    }
+
+    public interface IOtherDependency
+    {
+        void SomethingElse();
     }
 
     public class ClassWithAbstractDependencies
