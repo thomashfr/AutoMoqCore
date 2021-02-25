@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMoqCore.Tests", "AutoMoqCore.Tests\AutoMoqCore.Tests.csproj", "{285E077D-F836-4B95-8FC1-80CB9281F12D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMoqCore.TextFixure.Samples", "AutoMoqCore.TextFixure.Samples\AutoMoqCore.TextFixure.Samples.csproj", "{BFA2593C-88B3-4B30-9BAE-B3F4D9729189}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMoqCore.TextFixure.Samples.Tests", "AutoMoqCore.TextFixure.Samples.Tests\AutoMoqCore.TextFixure.Samples.Tests.csproj", "{BFA2593C-88B3-4B30-9BAE-B3F4D9729189}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMoqCore", "AutoMoqCore\AutoMoqCore.csproj", "{C3FB7D06-8E81-4F14-B93C-BDA594449E50}"
 EndProject
